@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheckOut</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+
+
+    background-image: url('./foodie/assets/images/newnext.avif'); /* Replace 'your-image.jpg' with the path to your image */
+    background-size: cover; /* Makes the background cover the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents repeating the background */
+    position: relative;
+}
+    
+
+    h2, h3 {
+      color: #d12929;
+    }
+
+    h2 {
+    font-family: 'Poppins', sans-serif; /* Use a modern font */
+    font-size: 28px; /* Slightly larger font size */
+    color: #f8f8f8; /* Dark grey for text color */
+    background-color: #ee8aee; /* Light background to highlight text */
+    padding: 10px 20px; /* Add some space around the text */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 6px rgba(144, 144, 59, 0.1); /* Subtle shadow effect */
+    text-align: center; /* Center-align the text */
+    letter-spacing: 1px; /* Slight letter spacing for better readability */
+    margin-bottom: 20px; /* Add some space below the heading */
+    text-transform: uppercase; /* Make the text uppercase */
+}
+
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #EA7773;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+
+    .item-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .item {
+      width: 30%;
+      margin: 10px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .cart-container, .form-container, .summary-container {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-container {
+      background-color: #e0f7fa;
+    }
+
+    .item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: 30%; /* Adjust to fit 3 items in a row */
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+    .form-container {
+      background-color: #ffe0b2;
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 1000;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .summary-container {
+      background-color: #e8f5e9;
+      display: none;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    ul li::before {
+      content: "• ";
+      color: #007bff;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Items Available for Booking Every Hotel....</h2>
+
+  <div class="item-container">
+    <div class="item">
+      <h3>Item 1: Fried Burgers Unlimited</h3>
+      <img src="/anvi/assets/images/promo-1.png" alt="Burger">
+      <button class="btn" onclick="addToCart('Fried Burgers Unlimited', 45)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <h3>Item 2: King Whopper Noodles</h3>
+      <img src="/anvi/assets/images/food-menu-2.png" alt="Noodles">
+      <button class="btn" onclick="addToCart('King Whopper Noodles', 49)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <h3>Item 3: White Castle Pizzas</h3>
+      <img src="/anvi/assets/images/food-menu-3.png" alt="Pizza">
+      <button class="btn" onclick="addToCart('White Castle Pizzas', 50)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <h3>Item 4: Supreme Dosa</h3>
+      <img src="/anvi/assets/images/promo-4.png" alt="Dosa">
+      <button class="btn" onclick="addToCart('Supreme Dosa', 59)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <h3>Item 5: Khao Pulawo BBQ</h3>
+      <img src="/anvi/assets/images/food-menu-5.png" alt="Pulawo">
+      <button class="btn" onclick="addToCart('Khao Pulawo BBQ', 49)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <h3>Item 6: Wendy's French Fries</h3>
+      <img src="/anvi/assets/images/food-menu-6.png" alt="Fries">
+      <button class="btn" onclick="addToCart('Wendy\'s French Fries', 49)">Add to Cart</button>
+    </div>
+</div>
+
+
+  <h3>Cart</h3>
+  <div id="cartContainer" class="cart-container">
+    <p>No items in the cart.</p>
+  </div>
+
+  <div id="formContainer" class="form-container">
+    <button class="close-btn" onclick="closeForm()">✖</button>
+    <h3>Enter Delivery Details</h3>
+    <form id="deliveryForm" onsubmit="confirmBooking(event)">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Delivery Date</label>
+        <input type="date" id="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="time">Delivery Time</label>
+        <input type="time" id="time" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Delivery Address</label>
+        <input type="text" id="address" required>
+      </div>
+
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+  </div>
+
+  <div id="summaryContainer" class="summary-container">
+    <h3>Booking Summary</h3>
+    <p id="summaryText"></p>
+    <button class="btn" onclick="printSlip()">Print Slip</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(itemName, price) {
+      cart.push({ itemName, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartContainer = document.getElementById('cartContainer');
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>No items in the cart.</p>';
+      } else {
+        let cartHTML = '<ul>';
+        for (let i = 0; i < cart.length; i += 3) {
+          cartHTML += '<li>';
+          for (let j = i; j < i + 3 && j < cart.length; j++) {
+            cartHTML += `${cart[j].itemName} - ₹${cart[j].price}<br>`;
+          }
+          cartHTML += '</li>';
+        }
+        cartHTML += '</ul>';
+        cartHTML += `<p>Total Price: ₹${calculateTotal()}</p>`;
+        cartHTML += '<button class="btn" onclick="showForm()">Proceed to Checkout</button>';
+        cartContainer.innerHTML = cartHTML;
+      }
+    }
+
+    function calculateTotal() {
+      return cart.reduce((total, item) => total + item.price, 0);
+    }
+
+    function showForm() {
+      document.getElementById('formContainer').style.display = 'block';
+      document.getElementById('cartContainer').style.display = 'none';
+    }
+
+    function closeForm() {
+      document.getElementById('formContainer').style.display = 'none';
+      document.getElementById('cartContainer').style.display = 'block';
+    }
+
+    function confirmBooking(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const address = document.getElementById('address').value;
+      const total = calculateTotal();
+      
+      const currentDate = new Date();
+      const deliveryDate = new Date(date);
+
+      if (deliveryDate < currentDate) {
+        alert("Pagal hai kYa bhai Kaise past mai Chala jaye ga");
+        return;
+      }
+
+      if (deliveryDate.getFullYear() - currentDate.getFullYear() > 2) {
+        alert("Tab tak Zinda Bache ga bhai .... Soch kr Enter kr bhai");
+        return;
+      }
+
+
+      let summaryText = `Thank you, ${name}! Your booking for the following items will be delivered to ${address} on ${date} at ${time}.\n\nItems:\n`;
+      cart.forEach(item => {
+        summaryText += `${item.itemName} - ₹${item.price}\n`;
+      });
+      summaryText += `\nTotal Price: ₹${total}`;
+      document.getElementById('summaryText').innerText = summaryText;
+
+      document.getElementById('formContainer').style.display = 'none';
+      document.getElementById('summaryContainer').style.display = 'block';
+      alert(`Booking Details:\nName: ${name}\nDelivery Date: ${date}\nDelivery Time: ${time}\nAddress: ${address}\nItems:\n${cart.map(item => `${item.itemName} - ₹${item.price}`).join('\n')}\nTotal Price: ₹${total}`);
+
+    }
+
+    function printSlip() {
+      const summaryText = document.getElementById('summaryText').innerText;
+      const printWindow = window.open('', '', 'height=600,width=800');
+      printWindow.document.write('<pre>' + summaryText + '</pre>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+
+    printWindow.onafterprint = function() {
+    window.location.href = 'home.html'; // Replace 'index.html' with your home page URL
+  };
+  </script>
+</body>
+</html>
