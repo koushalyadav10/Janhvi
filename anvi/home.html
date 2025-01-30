@@ -1043,39 +1043,33 @@
 
         </ul>
 
-        <form action="" class="footer-form">
+        <form id="bookingForm" class="footer-form">
 
           <p class="footer-list-title">Book a Table</p>
-
+        
           <div class="input-wrapper">
-
-            <input type="text" name="full_name" required placeholder="Your Name" aria-label="Your Name"
-              class="input-field">
-
-            <input type="email" name="email_address" required placeholder="Email" aria-label="Email"
-              class="input-field">
-
+            <input type="text" name="full_name" required placeholder="Your Name" class="input-field">
+            <input type="email" name="email_address" required placeholder="Email" class="input-field">
           </div>
-
+        
           <div class="input-wrapper">
-
-            <select name="total_person" aria-label="Total person" class="input-field">
+            <select name="total_person" required class="input-field">
               <option value="person">Person</option>
               <option value="2 person">2 Person</option>
               <option value="3 person">3 Person</option>
               <option value="4 person">4 Person</option>
               <option value="5 person">5 Person</option>
             </select>
-
-            <input type="date" name="booking_date" aria-label="Reservation date" class="input-field">
-
+            <input type="date" name="booking_date" required class="input-field">
           </div>
-
-          <textarea name="message" required placeholder="Message" aria-label="Message" class="input-field"></textarea>
-
+        
+          <textarea name="message" required placeholder="Message" class="input-field"></textarea>
+        
           <button type="submit" class="btn">Book a Table</button>
-
         </form>
+        
+        
+        
 
       </div>
     </div>
@@ -1110,6 +1104,44 @@
     - custom js link
   -->
   <script src="./assets/js/script.js" defer></script>
+
+  <!-- Link for backend Code: 
+  
+  -->
+
+
+  <script>
+  const form = document.getElementById('bookingForm');
+        
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('http://localhost:3000/book-table', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      alert(result.message);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to book a table. Please try again.');
+    }
+  });
+
+</script>
+
+
+
+
+
 
   <!-- 
     - ionicon link
